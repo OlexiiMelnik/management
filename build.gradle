@@ -1,0 +1,57 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'checkstyle'
+}
+
+group = 'team.management'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'com.puppycrawl.tools:checkstyle:8.44'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+task checkstyle(type: Checkstyle) {
+	configFile file('checkstyle.xml')
+	ignoreFailures = false
+	showViolations = true
+	source 'src'
+	include '**/*.java'
+	exclude '**/gen/**'
+}
+
+tasks.named('checkstyleMain').configure {
+	dependsOn checkstyle
+}
+
+tasks.named('checkstyleTest').configure {
+	dependsOn checkstyle
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
