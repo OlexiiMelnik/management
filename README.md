@@ -21,3 +21,20 @@ This application is suitable for enterprises that want to clearly and quickly ma
 •"services" directory: Includes services responsible for executing the business logic and interacting with repositories.
 
 ![2023-05-11_20-14](https://github.com/OlexiiMelnik/management/assets/111267682/80dd2455-a177-468b-830d-7198fbf14f7a)
+
+# Technologies
+1.Spring boot
+
+2.MySQL 8.0
+
+3.Spring MVC
+
+4.Java 17
+
+5.Spring Data JPA
+
+6.Gradle
+
+7.RESTfull 
+
+8.CRUD
